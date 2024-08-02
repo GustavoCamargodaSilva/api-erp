@@ -3,10 +3,13 @@ package com.api.estoquerp.service;
 import com.api.estoquerp.dto.CategoriaDTO;
 import com.api.estoquerp.entities.Categoria;
 import com.api.estoquerp.repository.CategoriaRepository;
+import com.api.estoquerp.service.exception.DataBaseException;
 import com.api.estoquerp.service.exception.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -48,7 +51,20 @@ public class CategoriaService {
             entity = categoriaRepository.save(entity);
             return new CategoriaDTO(entity);
         }catch (EntityNotFoundException e){
-            throw new ResourceNotFoundException("id not found");
+            throw new ResourceNotFoundException("Categoria nao encontrada");
+        }
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void deletar(Long id){
+        if (!categoriaRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Categoria não encontrada");
+        }
+        try {
+            categoriaRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DataBaseException("Falha de integridade referencial");
         }
     }
 }

@@ -32,8 +32,14 @@ public class CategoriaController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CategoriaDTO> alterarCategoria(@PathVariable Long id, @RequestBody CategoriaDTO cat){
+    public ResponseEntity<CategoriaDTO> alterarCategoria(@Valid @PathVariable Long id, @RequestBody CategoriaDTO cat){
         cat = categoriaService.alterar(cat, id);
         return ResponseEntity.ok().body(cat);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        categoriaService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }
