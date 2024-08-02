@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 public class CategoriaDTO {
 
-    @NotNull(message = "Id produto nao pode estar vazio!")
     private Long id;
     @NotNull(message = "Nome do produto nao pode estar vazio!")
     private String nome;

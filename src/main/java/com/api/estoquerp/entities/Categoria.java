@@ -16,9 +16,10 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private String descricao;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dataCadastro;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dataAlteracao;
 
 
