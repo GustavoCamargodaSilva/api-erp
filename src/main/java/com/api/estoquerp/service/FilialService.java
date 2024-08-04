@@ -2,6 +2,7 @@ package com.api.estoquerp.service;
 
 import com.api.estoquerp.dto.CategoriaDTO;
 import com.api.estoquerp.dto.FilialDTO;
+import com.api.estoquerp.dto.FilialMinDTO;
 import com.api.estoquerp.entities.Filial;
 import com.api.estoquerp.repository.FilialRepository;
 import com.api.estoquerp.service.exception.ResourceNotFoundException;
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Service
 public class FilialService {
@@ -24,5 +27,9 @@ public class FilialService {
         return new FilialDTO(filial);
     }
 
-
+    @Transactional(readOnly = true)
+    public List<FilialMinDTO> findAll() {
+        List<Filial> list = filialRepository.findAll();
+        return list.stream().map(FilialMinDTO::new).toList();
+    }
 }
