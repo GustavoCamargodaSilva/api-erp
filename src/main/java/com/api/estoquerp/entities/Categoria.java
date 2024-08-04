@@ -22,7 +22,6 @@ public class Categoria {
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dataAlteracao;
 
-
     public Categoria() { }
 
     public Categoria(Long id, String nome, String descricao) {
