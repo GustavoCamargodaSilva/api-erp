@@ -1,12 +1,28 @@
 package com.api.estoquerp.service;
 
+import com.api.estoquerp.dto.CategoriaDTO;
+import com.api.estoquerp.dto.FilialDTO;
+import com.api.estoquerp.entities.Filial;
 import com.api.estoquerp.repository.FilialRepository;
+import com.api.estoquerp.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class FilialService {
 
     @Autowired
     private FilialRepository filialRepository;
+
+    @Transactional(readOnly = true)
+    public FilialDTO findById(Long id) {
+        Filial filial = filialRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Filial não encontrada!"));
+        return new FilialDTO(filial);
+    }
+
+
 }
