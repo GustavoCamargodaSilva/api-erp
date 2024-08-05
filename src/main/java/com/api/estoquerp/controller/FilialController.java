@@ -7,10 +7,7 @@ import com.api.estoquerp.service.CategoriaService;
 import com.api.estoquerp.service.FilialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +19,8 @@ public class FilialController {
     private FilialService filialService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<FilialDTO> findById(@PathVariable Long id){
-        FilialDTO dto = filialService.findById(id);
+    public ResponseEntity<FilialMinDTO> findById(@PathVariable Long id){
+        FilialMinDTO dto = filialService.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 
@@ -32,5 +29,11 @@ public class FilialController {
     public ResponseEntity<List<FilialMinDTO>> findAll(){
         List<FilialMinDTO> list = filialService.findAll();
         return ResponseEntity.ok().body(list);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        filialService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

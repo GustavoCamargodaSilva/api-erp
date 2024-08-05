@@ -21,15 +21,24 @@ public class FilialService {
     private FilialRepository filialRepository;
 
     @Transactional(readOnly = true)
-    public FilialDTO findById(Long id) {
+    public FilialMinDTO findById(Long id) {
         Filial filial = filialRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Filial não encontrada!"));
-        return new FilialDTO(filial);
+        return new FilialMinDTO(filial);
     }
 
     @Transactional(readOnly = true)
     public List<FilialMinDTO> findAll() {
         List<Filial> list = filialRepository.findAll();
         return list.stream().map(FilialMinDTO::new).toList();
+    }
+
+    @Transactional
+    public void deletar(Long id) {
+        try {
+            filialRepository.deleteById(id);
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Filial não encontrada!");
+        }
     }
 }
