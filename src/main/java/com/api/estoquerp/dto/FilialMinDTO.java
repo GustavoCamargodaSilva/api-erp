@@ -16,10 +16,12 @@ public class FilialMinDTO {
     private String bairro;
     private String localidade;
     private String uf;
+    private String numero;
+    private String cnpj;
 
     public FilialMinDTO() { }
 
-    public FilialMinDTO(String apelido, String telefone, String email, String logradouro, String complemento, String bairro, String localidade, String uf) {
+    public FilialMinDTO(String numero, String cnpj, String apelido, String telefone, String email, String logradouro, String complemento, String bairro, String localidade, String uf) {
         this.apelido = apelido;
         this.telefone = telefone;
         this.email = email;
@@ -28,6 +30,8 @@ public class FilialMinDTO {
         this.bairro = bairro;
         this.localidade = localidade;
         this.uf = uf;
+        this.numero = numero;
+        this.cnpj = cnpj;
     }
 
     public FilialMinDTO(Filial entity) {
@@ -39,5 +43,7 @@ public class FilialMinDTO {
         bairro = entity.getBairro();
         localidade = entity.getLocalidade();
         uf = entity.getUf();
+        numero = entity.getNumero();
+        cnpj = entity.getCnpj();
     }
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 public class FilialDTO {
 
     private Long id;
+    private String cnpj;
     private String apelido;
     private String telefone;
     private String email;
@@ -23,10 +24,11 @@ public class FilialDTO {
     private String gia;
     private String ddd;
     private String siafi;
+    private String numero;
 
     public FilialDTO() { }
 
-    public FilialDTO(Long id, String apelido, String telefone, String email, String cep, String logradouro, String complemento, String unidade, String bairro, String localidade, String uf, String ibge, String gia, String ddd, String siafi) {
+    public FilialDTO(String cnpj, Long id, String apelido, String telefone, String email, String cep, String logradouro, String complemento, String unidade, String bairro, String localidade, String uf, String ibge, String gia, String ddd, String siafi, String numero) {
         this.id = id;
         this.apelido = apelido;
         this.telefone = telefone;
@@ -42,6 +44,8 @@ public class FilialDTO {
         this.gia = gia;
         this.ddd = ddd;
         this.siafi = siafi;
+        this.numero = numero;
+        this.cnpj = cnpj;
     }
 
     public FilialDTO(Filial entity) {
@@ -60,5 +64,7 @@ public class FilialDTO {
         gia = entity.getGia();
         ddd = entity.getDdd();
         siafi = entity.getSiafi();
+        numero = entity.getNumero();
+        cnpj = entity.getCnpj();
     }
 }
