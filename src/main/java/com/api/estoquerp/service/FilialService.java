@@ -68,4 +68,16 @@ public class FilialService {
             throw new ResourceNotFoundException("Filial não encontrada!");
         }
     }
+
+    @Transactional
+    public FilialDTO cadastrar(FilialRegisterDTO dto) {
+        Filial entity = consumoApiCep.consultarCep(dto.getCep());
+        entity.setCnpj(dto.getCnpj());
+        entity.setApelido(dto.getApelido());
+        entity.setTelefone(dto.getTelefone());
+        entity.setEmail(dto.getEmail());
+        entity.setNumero(dto.getNumero());
+        entity = filialRepository.save(entity);
+        return new FilialDTO(entity);
+    }
 }
