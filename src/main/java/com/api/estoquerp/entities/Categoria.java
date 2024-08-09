@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categoria")
@@ -21,6 +23,9 @@ public class Categoria {
     private Instant dataCadastro;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dataAlteracao;
+
+    @ManyToMany(mappedBy = "categorias")
+    private Set<Produto> produtos = new HashSet<>();
 
     public Categoria() { }
 
@@ -39,5 +44,7 @@ public class Categoria {
         dataAlteracao = Instant.now();
     }
 
-
+    public void addProduto(Produto produto){
+        produtos.add(produto);
+    }
 }
