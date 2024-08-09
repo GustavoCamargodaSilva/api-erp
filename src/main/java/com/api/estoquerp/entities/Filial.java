@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "filial")
 @Getter
@@ -29,7 +32,6 @@ public class Filial {
     private String siafi;
     private String numero;
     private String cnpj;
-
 
     public Filial() { }
 
