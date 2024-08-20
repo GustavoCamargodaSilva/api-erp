@@ -33,10 +33,19 @@ public class CategoriaService {
     public CategoriaDTO cadastrar(CategoriaDTO dto) {
         Categoria entity = new Categoria();
         entity.setId(dto.getId());
-        entity.setNome(dto.getNome());
-        entity.setDescricao(dto.getDescricao());
+        entity.setNome(dto.getNome().toUpperCase());
         entity = categoriaRepository.save(entity);
         return new CategoriaDTO(entity);
+    }
+
+    @Transactional
+    public Categoria findByName(String nome) {
+        String ref = nome.toUpperCase();
+        Categoria entity = categoriaRepository.findByNome(nome);
+        if(entity == null){
+            throw new ResourceNotFoundException("Categoria nao encontrada");
+        }
+        return entity;
     }
 
     @Transactional
@@ -45,9 +54,7 @@ public class CategoriaService {
             Categoria entity = new Categoria();
             entity = categoriaRepository.getReferenceById(id);
             entity.setNome(cat.getNome());
-            entity.setDescricao(cat.getDescricao());
             entity.setId(id);
-
             entity = categoriaRepository.save(entity);
             return new CategoriaDTO(entity);
         }catch (EntityNotFoundException e){
@@ -67,4 +74,6 @@ public class CategoriaService {
             throw new DataBaseException("Falha de integridade referencial");
         }
     }
+
+
 }

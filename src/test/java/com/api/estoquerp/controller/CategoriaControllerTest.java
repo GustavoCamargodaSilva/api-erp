@@ -31,7 +31,7 @@ public class CategoriaControllerTest {
 
     @BeforeEach
     void setUp() {
-        categoriaDTO = new CategoriaDTO(1L, "Categoria Teste", "Descrição Teste");
+        categoriaDTO = new CategoriaDTO(1L, "Categoria Teste");
     }
 
     @Test

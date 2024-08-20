@@ -20,11 +20,8 @@ public class CategoriaDTOTest {
     void testGettersAndSetters() {
         categoriaDTO.setId(1L);
         categoriaDTO.setNome("Categoria Teste");
-        categoriaDTO.setDescricao("Descrição Teste");
-
         assertEquals(1L, categoriaDTO.getId());
         assertEquals("Categoria Teste", categoriaDTO.getNome());
-        assertEquals("Descrição Teste", categoriaDTO.getDescricao());
     }
 
 }

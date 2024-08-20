@@ -18,7 +18,6 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String descricao;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dataCadastro;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
@@ -29,10 +28,9 @@ public class Categoria {
 
     public Categoria() { }
 
-    public Categoria(Long id, String nome, String descricao) {
+    public Categoria(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.descricao = descricao;
     }
 
     @PrePersist

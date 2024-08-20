@@ -38,7 +38,6 @@ public class CategoriaServiceTest {
         categoria = new Categoria();
         categoria.setId(1L);
         categoria.setNome("Categoria Teste");
-        categoria.setDescricao("Descricao Teste");
 
         categoriaDTO = new CategoriaDTO(categoria);
     }

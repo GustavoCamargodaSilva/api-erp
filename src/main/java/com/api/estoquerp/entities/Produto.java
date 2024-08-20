@@ -21,6 +21,7 @@ public class Produto {
     private String descricao;
     private BigDecimal preco;
     private String imagemUrl;
+    private String codBarras;
 
     @ManyToMany
     @JoinTable(
@@ -31,12 +32,13 @@ public class Produto {
 
     public Produto() { }
 
-    public Produto(Long id, String nome, String descricao, BigDecimal preco, Integer quantidadeEstoque, String imagemUrl) {
+    public Produto(Long id, String nome, String descricao, BigDecimal preco, Integer quantidadeEstoque, String imagemUrl, String codBarras) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.imagemUrl = imagemUrl;
+        this.codBarras = codBarras;
     }
 
     public void addCategoria(Categoria categoria){

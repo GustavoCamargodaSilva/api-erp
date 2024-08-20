@@ -20,7 +20,7 @@ public class CategoriaRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        categoria = new Categoria(null, "Categoria Teste", "Descrição Teste");
+        categoria = new Categoria(null, "Categoria Teste");
     }
 
     @Test
